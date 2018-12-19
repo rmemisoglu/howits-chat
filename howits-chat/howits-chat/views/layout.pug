@@ -2,7 +2,8 @@
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
+    block stylesheets
+        link(rel='stylesheet', href='/stylesheets/main.css')
   body
     div(ng-app="howits-chat",ng-cloak)
       block content
