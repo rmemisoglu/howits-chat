@@ -31,9 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="helpers\db.js" />
+    <Compile Include="models\users.js" />
+    <Compile Include="public\javascripts\controller\indexController.js" />
+    <Compile Include="public\javascripts\main.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
+    <Content Include=".env.txt" />
+    <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="public\stylesheets\index.css" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
     <Content Include="views\index.pug" />
@@ -41,9 +48,12 @@
     <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="helpers\" />
+    <Folder Include="models\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
+    <Folder Include="public\javascripts\controller\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
