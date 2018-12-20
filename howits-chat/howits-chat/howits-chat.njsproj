@@ -31,18 +31,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="auth\google.js" />
     <Compile Include="helpers\db.js" />
+    <Compile Include="middleware\isAuthenticated.js" />
     <Compile Include="models\users.js" />
+    <Compile Include="public\javascripts\controller\chatController.js" />
     <Compile Include="public\javascripts\controller\indexController.js" />
     <Compile Include="public\javascripts\main.js" />
+    <Compile Include="routes\auth.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\chat.js" />
     <Compile Include="routes\index.js" />
-    <Compile Include="routes\users.js" />
-    <Content Include=".env.txt" />
+    <Content Include=".env" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="public\stylesheets\chat.css" />
     <Content Include="public\stylesheets\index.css" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
+    <Content Include="views\chat.pug" />
     <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
@@ -50,6 +58,8 @@
   <ItemGroup>
     <Folder Include="helpers\" />
     <Folder Include="models\" />
+    <Folder Include="auth\" />
+    <Folder Include="middleware\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
