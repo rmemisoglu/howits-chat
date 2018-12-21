@@ -27,7 +27,7 @@ block content
             .tab-right(ng-show="activeTab === 2")
               ul.people
                 li.person(ng-repeat="user in onlineList")
-                  img(ng-src="{{ user.meta.photoUrl }}")
+                  img(ng-src="{{ user.meta.photo }}")
                   span.name {{ user.meta.username }} 
                   span.preview &nbsp;
           .bottom

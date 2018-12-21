@@ -25,7 +25,7 @@ const app = express();
 
 //helpers
 //const db = require('./helpers/db');
-mongoose.connect(process.env.DB_STRING, () => {
+mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true }, () => {
     console.log('MongoDB: Connected');
 });
 

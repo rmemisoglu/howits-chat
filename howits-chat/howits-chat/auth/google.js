@@ -10,6 +10,10 @@ passport.use(
         clientSecret: process.env.GOOGLE_LOGIN_SECRET_ID,
         callbackURL: process.env.GOOGLE_LOGIN_CALLBACK_URL
     }, (accessToken, refreshToken, profile, done) => {
+        //let p = profile.image;
+        //console.log('profile-bas: ');
+        //console.log(p);
+        //console.log('profile-son: ');
         console.log(profile);
         User.findOne({ googleId: profile.id }).then((currentUser) => {
             if (currentUser) {
@@ -17,7 +21,7 @@ passport.use(
                 done(null, currentUser);
             } else {
                 new User({
-                    username: profile.name.givenName,
+                    username: profile.displayName,
                     googleId: profile.id
                     
                 }).save().then((newUser) => {

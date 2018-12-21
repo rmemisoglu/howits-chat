@@ -29,12 +29,16 @@ io.on('connection', socket => {
     Users.list(users => {
         io.emit('onlineList', users);
     });
+
     socket.on('newMessage', data => {
-        Messages.upsert({
+        const messageData = {
             ...data,
             userId: socket.request.user._id,
             username: socket.request.user.username
-        });
+        };
+
+        Messages.upsert(messageData);
+        socket.broadcast.emit('receiveMessage',messageData);
     });
 
     Rooms.list(rooms => {
