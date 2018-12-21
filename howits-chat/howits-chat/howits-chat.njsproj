@@ -40,6 +40,8 @@
     <Compile Include="public\javascripts\controller\chatController.js" />
     <Compile Include="public\javascripts\controller\indexController.js" />
     <Compile Include="public\javascripts\main.js" />
+    <Compile Include="public\javascripts\services\userFactory.js" />
+    <Compile Include="public\javascripts\services\chatFactory.js" />
     <Compile Include="routes\auth.js">
       <SubType>Code</SubType>
     </Compile>
@@ -68,6 +70,7 @@
     <Folder Include="models\" />
     <Folder Include="auth\" />
     <Folder Include="middleware\" />
+    <Folder Include="public\javascripts\services\" />
     <Folder Include="src\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
