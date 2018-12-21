@@ -1,8 +1,8 @@
 ﻿extends layout
 
 append stylesheets
-    link(rel='stylesheet', href='/stylesheets/chat.css')
-    
+  link(rel='stylesheet', href='/stylesheets/chat.css')
+
 block content
   div(ng-controller="chatController")
     .wrapper
@@ -10,70 +10,41 @@ block content
         .left
           .top
             ul.tab
-              li.conversations
-                a.active(href='#') Chats
-              li.onlineUsers
-                a(href='#') Online Users
-          ul.people
-            li.person
-              span.name Thomas Bangalter
-              span.preview I was wondering...
-            li.person.active
-              span.name Dog Woofson
-              span.preview I've forgotten how it felt before
-            li.person
-              span.name Louis CK
-              span.preview But we’re probably gonna need a new carpet.
-            li.person
-              span.name Bo Jackson
-              span.preview It’s not that bad...
-            li.person
-              span.name Michael Jordan
-              span.preview
-                | Wasup for the third time like is
-                | you blind bitch
-            li.person
-              span.name Drake
-              span.preview howdoyoudoaspace
-            li.person
-              span.name Louis CK
-              span.preview But we’re probably gonna need a new carpet.
-            li.person
-              span.name Bo Jackson
-              span.preview It’s not that bad...
-            li.person
-              span.name Michael Jordan
-              span.preview
-                | Wasup for the third time like is
-                | you blind bitch
-            li.person
-              span.name Drake
-              span.preview howdoyoudoaspace
+              li.conversations(ng-click="changeTab(1)")
+                a(ng-class="{active: activeTab === 1}") Chats
+              li.onlineUsers(ng-click="changeTab(2)")
+                a(ng-class="{active: activeTab === 2}") Online Users
+
+          .tabArea
+            .tab-left(ng-show="activeTab === 1")
+              ul.people
+                li.person(
+                  ng-repeat="room in roomList",
+                  ng-click="switchRoom(room)"
+                )
+                  span.name {{ room.name }}
+
+            .tab-right(ng-show="activeTab === 2")
+              ul.people
+                li.person(ng-repeat="user in onlineList")
+                  img(ng-src="{{ user.meta.photoUrl }}")
+                  span.name {{ user.meta.username }} 
+                  span.preview &nbsp;
           .bottom
-            button New Group
-        .right
+            button(ng-click="newRoom()") New Room
+        .right(ng-show="chatClicked")
           .top
             span
-              span.name Dog Woofson
+              span.name {{ chatName }}
           .chat.active-chat
-            .bubble.you
-              span Hakan Aydın
-              | Hello, can you hear me?
-            .bubble.you
-              span Hakan Aydın
-              | I'm in California dreaming
-            .bubble.me ... about who we used to be.
-            .bubble.me Are you serious?
-            .bubble.you
-              span Hakan Aydın
-              | When we were younger and free...
-            .bubble.you
-              span Hakan Aydın
-              | I've forgotten how it felt before
+            .bubble
           .write
-            input(type='text')
-            a.write-link.send(href='javascript:;')
+            form(ng-submit="newMessage()")
+                input(type='text', ng-model="message")
+                a.write-link.send(ng-click="newMessage()")
 
 append javascripts
-    script(src="/javascripts/controller/chatController.js")
-    script(src="http://localhost:3000/socket.io/socket.io.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/services/userFactory.js")
+  script(src="/javascripts/services/chatFactory.js")
+  script(src="/javascripts/controller/chatController.js")

@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const findOrCreate = require('mongoose-find-or-create');
 
 const userSchema = new Schema({
     googleId: String,
     username: String
 });
 
-//userSchema.plugin(findOrCreate);
 module.exports = mongoose.model('users', userSchema);
